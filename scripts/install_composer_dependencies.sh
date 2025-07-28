@@ -1,21 +1,19 @@
 #!/bin/bash
+set -e  # Exit immediately on error
+set -x  # Print each command
 
-# Navigate to project directory
 cd /var/www/html
 
-# Enable and install PHP 7.4 packages
-sudo amazon-linux-extras enable php7.4
+# Enable PHP 7.4 without interaction
+sudo amazon-linux-extras enable php7.4 -y || true
 sudo yum clean metadata
-sudo yum install php php-cli php-json php-mbstring php-xml php-pdo php-common php-mysqlnd -y
+sudo yum install php php-cli php-json php-mbstring php-xml php-pdo php-common php-mysqlnd wget -y --setopt=skip_if_unavailable=true
 
-# Install wget if not already installed
-sudo yum install wget -y
-
-# Install Composer if not present
+# Install Composer if missing
 if ! command -v composer &> /dev/null; then
   sudo wget https://getcomposer.org/composer.phar -O /usr/local/bin/composer
   sudo chmod +x /usr/local/bin/composer
 fi
 
-# Run composer install
-sudo composer install --no-interaction --prefer-dist
+# Run composer install with memory-efficient flags
+sudo composer install --no-interaction --prefer-dist --no-scripts --no-dev
