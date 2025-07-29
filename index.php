@@ -1,5 +1,5 @@
 
-This is a Test for DevOps Pipeline tested by Khalid. reviwed by the Khalid it self. Hello from Khalid to all the AWS DevOps Gen AI students. 
+This is a Test for the DevOps Pipeline, tested by Khalid. reviewed by Khalid himself. Hello from Khalid to all the AWS DevOps Gen AI students. 
 
 This is to certify that the code-deploy is working fine.
 
